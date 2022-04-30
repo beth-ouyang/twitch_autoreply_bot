@@ -25,17 +25,18 @@ client.on('message', echoDinner);
 
 //////////////////////////////////////////////////////////
 
-function echoDinner(channel, tags, message, self, food_list=foodsList) {
-    if (self) { return; } 
-  
+function echoDinner(channel, tags, message, self, food_list = foodsList) {
+    if (self) { return; }
+
     const commandName = replaceEMOTES(message).trim();
-    var emote = selectEMOTES()
+    var emote = selectEMOTES();
+
 
     if (commandName === '!晚餐時間') {
         use_cnt += 1
         var food = selectFood(food_list);
         client.say(channel, `@${tags["display-name"]} 晚餐吃${food} ${emote} `);
-        
+
         console.log(`* ${commandName} 被使用了 ${use_cnt}次`);
     }
 
@@ -43,10 +44,11 @@ function echoDinner(channel, tags, message, self, food_list=foodsList) {
         use_cnt += 1
         var food = selectFood(food_list);
         client.say(channel, `@${tags["display-name"]} 午餐吃${food} ${emote} `);
-        
+
         console.log(`* ${commandName} 被使用了 ${use_cnt}次`);
     }
 
+    sleep(5000);
 }
 
 
@@ -73,4 +75,8 @@ function readFoodList(filename) {
 
 function onConnectedHandler (addr, port) {
     console.log(`* Connected to ${addr}:${port}`);
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
