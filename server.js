@@ -6,11 +6,11 @@ var stamp_arr = ['nlnlYes', 'nlnlOMG', 'BloodTrail', 'StinkyCheese', 'BabyRage',
 
 
 const client = new tmi.Client({
-    connection:{
-        reconnect: true
-    },
+	connection:{
+		reconnect: true
+	},
 	channels: ['never_loses'],
-    identity: {
+	identity: {
 		username: 'username',
 		password: 'password' //twitchgenerator.com
 	},
