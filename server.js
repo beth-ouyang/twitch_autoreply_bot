@@ -26,12 +26,11 @@ client.on('message', echoDinner);
 //////////////////////////////////////////////////////////
 
 function echoDinner(channel, tags, message, self, food_list=foodsList) {
-    if (self) { return; } // Ignore messages from the bot
+    if (self) { return; } 
   
     const commandName = replaceEMOTES(message).trim();
     var emote = selectEMOTES()
 
-    // If the command is known, let's execute it
     if (commandName === '!晚餐時間') {
         use_cnt += 1
         var food = selectFood(food_list);
