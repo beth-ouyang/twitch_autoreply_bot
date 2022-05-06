@@ -5,6 +5,7 @@ var door_open = true;
 var use_cnt = 0;
 var goodnoght_cnt = 0;
 var foodsList = readFoodList('./food_list.txt');
+const mcList = readFoodList('./mc_set_list.txt');
 var stamp_arr = ['nlnlYes', 'nlnlOMG', 'BloodTrail', 'StinkyCheese', 'BabyRage', 'BrainSlug', 'KappaPride', 'PogChamp', 'TPFufun', 'cmonBruh', 'SwiftRage', 'PunOko', 'SabaPing', 'FamilyMan', 'BegWan', 'SeemsGood', 'OSFrog', 'RaccAttack'];
 
 const client = new tmi.Client({
@@ -65,6 +66,18 @@ function echoDinner(channel, tags, message, self, food_list = foodsList) {
         console.log(`* 有 ${goodnoght_cnt} 個人加入了睡睡幫 zZZ`);
 
         setTimeout(function() { door_open = true }, 10000);
+    }
+    
+    if (message.includes('!老麥時間') & door_open == true) {
+        var food = selectFood(mcList);
+
+        door_open = false
+        use_cnt += 1
+
+        client.say(channel, `@${tags["display-name"]} 老麥就選${food} ${emote} `);
+        console.log(`* 機器皮皮蝦被呼喚的第${use_cnt}次 by ${tags["display-name"]}`);
+
+        setTimeout(function() { door_open = true }, 5000);
     }
 
 
