@@ -4,9 +4,9 @@ const tmi = require('tmi.js');
 var door_open = true;
 var use_cnt = 0;
 var goodnoght_cnt = 0;
-var foodsList = readFoodList('./food_list.txt');
+const foodsList = readFoodList('./food_list.txt');
 const mcList = readFoodList('./mc_set_list.txt');
-var stamp_arr = ['nlnlYes', 'nlnlOMG', 'BloodTrail', 'StinkyCheese', 'BabyRage', 'BrainSlug', 'KappaPride', 'PogChamp', 'TPFufun', 'cmonBruh', 'SwiftRage', 'PunOko', 'SabaPing', 'FamilyMan', 'BegWan', 'SeemsGood', 'OSFrog', 'RaccAttack'];
+const stamp_arr = ['nlnlYes', 'nlnlOMG', 'BloodTrail', 'StinkyCheese', 'BabyRage', 'BrainSlug', 'KappaPride', 'PogChamp', 'TPFufun', 'cmonBruh', 'SwiftRage', 'PunOko', 'SabaPing', 'FamilyMan', 'BegWan', 'SeemsGood', 'OSFrog', 'RaccAttack'];
 
 const client = new tmi.Client({
     connection: {
