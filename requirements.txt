@@ -1,3 +1,4 @@
-requests @ file:///tmp/build/80754af9/requests_1608241421344/work
-beautifulsoup4 @ file:///home/linux1/recipes/ci/beautifulsoup4_1610988766420/work
-regex @ file:///opt/concourse/worker/volumes/live/e81f6b8c-e3b5-481b-6b5d-4fa8d9bb9405/volume/regex_1617569701251/work
+requests[security] == 2.9.1 
+bs4==0.0.0
+beautifulsoup4==4
+re
