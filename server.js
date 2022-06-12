@@ -1,12 +1,16 @@
+require('dotenv').config();
+
 const { readFileSync, promises: fsPromises } = require('fs');
 const tmi = require('tmi.js');
 
 var door_open = true;
 var use_cnt = 0;
 var goodnoght_cnt = 0;
-const foodsList = readFoodList('./food_list.txt');
-const mcList = readFoodList('./mc_set_list.txt');
-const stamp_arr = ['nlnlYes', 'nlnlOMG', 'BloodTrail', 'StinkyCheese', 'BabyRage', 'BrainSlug', 'KappaPride', 'PogChamp', 'TPFufun', 'cmonBruh', 'SwiftRage', 'PunOko', 'SabaPing', 'FamilyMan', 'BegWan', 'SeemsGood', 'OSFrog', 'RaccAttack'];
+const CD_time = 5000
+const foodsList = readFoodList('./FoodListFolder/food_list.txt');
+const mcList = readFoodList('./FoodListFolder/mc_set_list.txt');
+const drinkList = readFoodList('./FoodListFolder/drink_list.txt');
+const stamp_arr = ['nlnlYes', 'nlnlOMG', 'BloodTrail', 'StinkyCheese', 'BabyRage', 'OhMyDog', 'KappaPride', 'PogChamp', 'TPFufun', 'cmonBruh', 'SwiftRage', 'PunOko', 'SabaPing', 'FamilyMan', 'BegWan', 'SeemsGood', 'OSFrog', 'RaccAttack', 'Poooound', 'DxCat', ' ChefFrank', 'SeriousSloth'];
 
 const client = new tmi.Client({
     connection: {
@@ -14,8 +18,8 @@ const client = new tmi.Client({
     },
     channels: ['never_loses'],
     identity: {
-        username: 'your_username',
-        password: 'your_password' //get from → twitchgenerator.com
+        username: process.env.TWITCH_BOT_USERNAME,
+        password: process.env.TWITCH_BOT_OATH_TOKEN
     },
 });
 
@@ -25,51 +29,58 @@ client.on('connected', onConnectedHandler);
 
 client.on('message', echoDinner);
 
+// console.log(readFoodList('./mc_set_list.txt'))
 
 //////////////////////////////////////////////////////////
 
-function echoDinner(channel, tags, message, self, food_list = foodsList) {
+function echoDinner(channel, tags, message, self) {
     if (self) { return; }
     var emote = selectEMOTES();
 
     if (message.includes('!晚餐時間') & door_open == true) {
-        var food = selectFood(food_list);
+        var food = randomSelect(foodsList);
 
         door_open = false;
         use_cnt += 1;
 
         client.say(channel, `@${tags["display-name"]} 晚餐吃${food} ${emote} `);
-        console.log(`* 機器皮皮蝦被呼喚了 ${use_cnt}次`);
+        console.log(`* 機器皮皮蝦被呼喚的第${use_cnt}次 by ${tags["display-name"]}`);
 
-        setTimeout(function() { door_open = true }, 10000);
+        setTimeout(function() { door_open = true }, CD_time);
     }
 
     if (message.includes('!午餐時間') & door_open == true) {
-        var food = selectFood(food_list);
+        var food = randomSelect(foodsList);
+
+        while (tags.username == 'raccattack850811' && (food.includes('麵') | food.includes('米粉') | food.includes('羹'))) {
+            food = randomSelect(foodsList);
+        }
 
         door_open = false
         use_cnt += 1
 
         client.say(channel, `@${tags["display-name"]} 午餐吃${food} ${emote} `);
-        console.log(`* 機器皮皮蝦被呼喚了 ${use_cnt}次`);
+        console.log(`* 機器皮皮蝦被呼喚的第${use_cnt}次 by ${tags["display-name"]}`);
 
-        setTimeout(function() { door_open = true }, 10000);
+        setTimeout(function() { door_open = true }, CD_time);
     }
 
-    if (message.includes('!睡覺時間') & door_open == true) {
-        var food = selectFood(food_list);
-
+    if (message.includes('!睡睡時間') & door_open == true) {
         door_open = false
         goodnoght_cnt += 1
 
-        client.say(channel, `@${tags["display-name"]} 古德奈 <3 `);
-        console.log(`* 有 ${goodnoght_cnt} 個人加入了睡睡幫 zZZ`);
+        if (tags.username == 'achiaaaaka') {
+            client.say(channel, `大家估奈 DxCat `)
+        }
 
-        setTimeout(function() { door_open = true }, 10000);
+        client.say(channel, `@${tags["display-name"]} 估奈 GivePLZ `);
+        console.log(`* ${tags["display-name"]}加入了睡睡幫 zZZ`);
+
+        setTimeout(function() { door_open = true }, CD_time);
     }
-    
+
     if (message.includes('!老麥時間') & door_open == true) {
-        var food = selectFood(mcList);
+        var food = randomSelect(mcList);
 
         door_open = false
         use_cnt += 1
@@ -77,7 +88,19 @@ function echoDinner(channel, tags, message, self, food_list = foodsList) {
         client.say(channel, `@${tags["display-name"]} 老麥就選${food} ${emote} `);
         console.log(`* 機器皮皮蝦被呼喚的第${use_cnt}次 by ${tags["display-name"]}`);
 
-        setTimeout(function() { door_open = true }, 5000);
+        setTimeout(function() { door_open = true }, CD_time);
+    }
+
+    if (message.includes('!飲料時間') & door_open == true) {
+        var drink = randomSelect(drinkList);
+
+        door_open = false
+        use_cnt += 1
+
+        client.say(channel, `@${tags["display-name"]} 來喝個${drink} ${emote} `);
+        console.log(`* 機器皮皮蝦被呼喚的第${use_cnt}次 by ${tags["display-name"]}`);
+
+        setTimeout(function() { door_open = true }, CD_time);
     }
 
 
@@ -89,7 +112,7 @@ function replaceEMOTES(str) {
     return str.replaceAll(rule, "");
 }
 
-function selectFood(list) {
+function randomSelect(list) {
     const len = list.length;
     return list[Math.floor(Math.random() * len)];
 }
@@ -102,7 +125,7 @@ function selectEMOTES() {
 function readFoodList(filename) {
     const contents = readFileSync(filename, 'utf-8');
     const arr = contents.split('\n');
-    return arr;
+    return arr.filter(el => el);
 }
 
 function onConnectedHandler(addr, port) {
