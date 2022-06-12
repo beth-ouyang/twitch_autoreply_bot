@@ -17,7 +17,7 @@
 #### 在本機執行
 1. 下載 node.js
 2. 執行：終端機 node server.js
-#### Or you cna deploy on Heroku:
+#### Or you can deploy on Heroku:
 [Twitch Chat Bot Tutorial - Create & Deploy with node.js, tmi.js, & Heroku](https://www.youtube.com/watch?v=gBX7S9i74GU&t=1290s)
 
 
