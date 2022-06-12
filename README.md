@@ -10,11 +10,12 @@
 - 晚餐時間 → 回傳隨機食物
 - 午餐時間 → 回傳隨機食物
 - 睡覺時間 → 回傳晚安
-- 老麥時間 → 回傳隨機套餐（只有超值全餐ㄏㄏ）
+- 老麥時間 → 回傳隨機套餐（只有超值全餐 嘿嘿）
+- 飲料時間 → 回傳隨機飲料
 
 ### 執行方式
 #### 在本機執行
-1. 要先下載 node.js
+1. 下載 node.js
 2. 執行：終端機 node server.js
 #### Or you cna deploy on Heroku:
 [Twitch Chat Bot Tutorial - Create & Deploy with node.js, tmi.js, & Heroku](https://www.youtube.com/watch?v=gBX7S9i74GU&t=1290s)
