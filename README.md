@@ -15,3 +15,6 @@
 ### 備註！
 1. 要先下載 node.js
 2. 執行：終端機 node server.js
+
+### Reference
+[Twitch Chat Bot Tutorial - Create & Deploy with node.js, tmi.js, & Heroku](https://www.youtube.com/watch?v=gBX7S9i74GU&t=1290s)
