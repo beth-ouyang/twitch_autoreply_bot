@@ -4,9 +4,9 @@ const tmi = require('tmi.js');
 
 const express = require('express');
 const app = express();
-app.get('/healthz', (req, res) => {
-  res.status(200).send('OK');
-});
+app.get('/', (req, res) => {
+  res.sendStatus(200)
+})
 
 var door_open = true;
 var use_cnt = 0;
