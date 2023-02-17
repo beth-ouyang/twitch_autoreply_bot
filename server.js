@@ -130,4 +130,5 @@ function readFoodList(filename) {
 
 function onConnectedHandler(addr, port) {
     console.log(`* Connected to ${addr}:${port}`);
+    res.sendStatus(200);
 }
