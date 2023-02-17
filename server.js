@@ -1,7 +1,12 @@
 require('dotenv').config();
-
 const { readFileSync, promises: fsPromises } = require('fs');
 const tmi = require('tmi.js');
+
+const express = require('express');
+const app = express();
+app.get('/healthz', (req, res) => {
+  res.status(200).send('OK');
+});
 
 var door_open = true;
 var use_cnt = 0;
@@ -130,5 +135,4 @@ function readFoodList(filename) {
 
 function onConnectedHandler(addr, port) {
     console.log(`* Connected to ${addr}:${port}`);
-    res.sendStatus(200);
 }
