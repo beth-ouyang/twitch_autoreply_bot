@@ -38,6 +38,23 @@ client.on('message', echoDinner);
 
 //////////////////////////////////////////////////////////
 
+app.get("/wakeup", function (request, response) {
+  console.log("WakeUpPPS");
+  response.send("WakeUpPPS");
+});
+
+const listener = app.listen(process.env.PORT, function () {
+  console.log("I'm waking up on port " + listener.address().port);
+});
+
+setInterval(() => {
+  fetch("https://pps-twitch-bot.glitch.me/wakeup", {
+    method: "GET",
+  });
+}, 180000);
+
+//////////////////////////////////////////////////////////
+
 function echoDinner(channel, tags, message, self) {
     if (self) { return; }
     var emote = selectEMOTES();
@@ -106,6 +123,16 @@ function echoDinner(channel, tags, message, self) {
         console.log(`* 機器皮皮蝦被呼喚的第${use_cnt}次 by ${tags["display-name"]}`);
 
         setTimeout(function() { door_open = true }, CD_time);
+    }
+  
+    if (message.includes('土豆') & door_open == true & tags["display-name"] == 'OldHead87') {
+      door_open = false;
+      use_cnt += 1;
+
+      client.say(channel, `土豆 ${emote}`);
+      console.log(`* 機器皮皮蝦被呼喚的第${use_cnt}次 by ${tags["display-name"]}`);
+
+      setTimeout(function() { door_open = true }, CD_time);
     }
 
 
