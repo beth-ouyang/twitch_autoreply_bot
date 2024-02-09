@@ -1,4 +1,4 @@
-# Twitch 自動回話機器人
+# Twitch Auto-reply Bot
 ### Usage
 Listening to the messages in Twitch Chatroom, and react upon the specific command.
 
