@@ -19,7 +19,7 @@ Listening to the messages in Twitch Chatroom, and react upon the specific comman
 3. Run `node server.js` in the terminal
 
 ### Deploy on Render
-1. Add a web service by importing the Git repository
-2. Set the buil command `yarn`
+1. Add a web service by importing the Github repository
+2. Set the build command `yarn`
 3. Set the start command `npm run start`
 4. Set the environment variables: `TWITCH_BOT_USERNAME` and `TWITCH_BOT_OATH_TOKEN`
