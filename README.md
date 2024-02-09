@@ -1,23 +1,19 @@
 # Twitch 自動回話機器人
-### 主要功能
-聊天室輸入指令 → 回傳文字
+### Usage
+Listening to the messages in Twitch Chatroom, and react upon the specific command.
 
 ### Features
-1. 監聽聊天室，收到指令後回傳指定內容
-2. 10秒CD
-3. 食物列表 → 讀取txt檔
-4. 目前有的指令：
-  - 晚餐時間 → 回傳隨機食物
-  - 午餐時間 → 回傳隨機食物
-  - 睡覺時間 → 回傳晚安
-  - 老麥時間 → 回傳隨機套餐（只有超值全餐 嘿嘿）
-  - 飲料時間 → 回傳隨機飲料
-5. menu_crawler.py : 飲料菜單＆麥當勞菜單爬蟲
-### 執行方式
-#### 在本機執行
-1. 下載 node.js
-2. 執行：終端機 node server.js
-#### Or you can deploy on Heroku:
-[Twitch Chat Bot Tutorial - Create & Deploy with node.js, tmi.js, & Heroku](https://www.youtube.com/watch?v=gBX7S9i74GU&t=1290s)
+1. 10 seconds cooldown time to avoind flooding the chatroom
+2. food list → read the txt file 
+3. Commands：
+  - 晚餐時間 (dinner time) → return random food for resommendation
+  - 午餐時間 (lunch time) → return random food for resommendation
+  - 睡覺時間 (sleep time) → return "Goodnight"
+  - 老麥時間 (McDonald time)→ return a random combo from McDonald's
+  - 飲料時間 (bubble tea time)→ return a random bubble tea selection in Taiwan
+4. menu_crawler.py : Web srapping for the milktea and McDonald's menu.
 
+### Execution on the local machine
+1. Install node.js
+2. Run `node server.js` in the terminal
 
