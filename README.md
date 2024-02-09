@@ -14,6 +14,12 @@ Listening to the messages in Twitch Chatroom, and react upon the specific comman
 4. menu_crawler.py : Web srapping for the milktea and McDonald's menu.
 
 ### Execution on the local machine
-1. Install node.js
-2. Run `node server.js` in the terminal
+1. Creat an `.env` file to store the environment variables: `TWITCH_BOT_USERNAME` and `TWITCH_BOT_OATH_TOKEN`
+2. Install node.js
+3. Run `node server.js` in the terminal
 
+### Deploy on Render
+1. Add a web service by importing the Git repository
+2. Set the buil command `yarn`
+3. Set the start command `npm run start`
+4. Set the environment variables: `TWITCH_BOT_USERNAME` and `TWITCH_BOT_OATH_TOKEN`
